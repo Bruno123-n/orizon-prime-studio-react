@@ -1,6 +1,8 @@
 import { Header } from './components/Header/Header'
 import { Hero } from './components/Hero/Hero'
 import { Services } from './components/Services/Services'
+import { Gallery } from './components/Gallery/Gallery'
+
 
 export function App() {
   return (
@@ -8,6 +10,7 @@ export function App() {
       <Header />
       <Hero />
       <Services />
+      <Gallery />
     </div>
   )
 }
