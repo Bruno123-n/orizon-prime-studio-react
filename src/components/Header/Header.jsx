@@ -1,6 +1,6 @@
 import './Header.css'
 
-export function Header() {
+export function Header({onOpenBooking}) {
   return (
     <header className="header">
       <div className="header-container">
@@ -15,7 +15,11 @@ export function Header() {
           <a href="#contato">Contato</a>
         </nav>
 
-        <a href="#agendar" className="btn-agendar">
+        <a 
+          href="#agendar" 
+          className="btn-agendar"
+          onClick={onOpenBooking}
+        >
           Agendar Horário
         </a>
       </div>

@@ -1,6 +1,6 @@
 import './Hero.css'
 
-export function Hero() {
+export function Hero({onOpenBooking}) {
   return (
     <section className="hero" id="home">
       <div className="hero-container">
@@ -14,7 +14,11 @@ export function Hero() {
             sofisticado. Agende seu horário e viva a experiência Orizon.
           </p>
           <div className="hero-buttons">
-            <a href="#agendar" className="btn-primary">
+            <a 
+              href="#agendar" 
+              className="btn-primary"
+              onClick={onOpenBooking}
+            >
               Agendar Horário
             </a>
             <a href="#servicos" className="btn-secondary">
