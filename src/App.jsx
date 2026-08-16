@@ -5,6 +5,7 @@ import { Gallery } from './components/Gallery/Gallery'
 import { Testimonials } from './components/Testimonials/Testimonials'
 import { Footer } from './components/Footer/Footer'
 import { BookingForm } from './components/Booking/BookingForm'
+import { About } from './components/About/About'
 import { useState } from 'react'
 
 
@@ -18,6 +19,7 @@ export function App() {
     <div>
       <Header onOpenBooking={handleOpenBooking}/>
       <Hero onOpenBooking={handleOpenBooking}/>
+      <About />
       <Services onOpenBooking={handleOpenBooking}/>
       <Gallery />
       <Testimonials />

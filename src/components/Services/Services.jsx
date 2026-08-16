@@ -1,6 +1,6 @@
 import './Services.css'
 
-export function Services() {
+export function Services({ onOpenBooking }) {
   const servicesList = [
     {
       id: 1,
@@ -54,7 +54,11 @@ export function Services() {
                 <span className="service-price">{service.price}</span>
               </div>
               <p className="service-description">{service.description}</p>
-              <a href="#agendar" className="service-btn">
+              <a 
+                href="#agendar"
+                className="service-btn"
+                onClick={ onOpenBooking }
+              >
                 Agendar este serviço
               </a>
             </div>
