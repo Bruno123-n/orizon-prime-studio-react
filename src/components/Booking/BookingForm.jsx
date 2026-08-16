@@ -2,6 +2,9 @@ import { useState } from 'react'
 import './BookingForm.css'
 
 export function BookingForm({ isOpen, onClose }) {
+  // (today = variavel === hoje)Pega a data atual no formato YYYY-MM-DD para o atributo min do input de data
+  const today = new Date().toISOString().split('T')[0]
+
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -20,12 +23,36 @@ export function BookingForm({ isOpen, onClose }) {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    
+
+    // 1. Validação de Data no Passado
+    if (formData.date < today) {
+      alert('Atenção: Não é possível agendar em uma data no passado! Escolha a data de hoje ou uma data futura.')
+      return
+    }
+
+    // 1. Validação de Dia da Semana (0 = Domingo)
+    // Adiciona o fuso horário correto para evitar problemas na conversão de data
+    const selectedDate = new Date(`${formData.date}T00:00:00`)
+    const dayOfWeek = selectedDate.getDay()
+
+    if (dayOfWeek === 0) {
+      alert('Não abrimos aos domingos! Por favor, selecione outro dia de segunda a sábado.')
+      return
+    }
+
+    // 2. Validação de Horário de Funcionamento (08:00 às 19:00)
+    const [hours] = formData.time.split(':').map(Number)
+    if (hours < 8 || hours >= 19) {
+      alert('Horário fora do expediente! Nosso atendimento funciona das 08h às 19h.')
+      return
+    }
+
+    // Se passou em todas as validações, abre o WhatsApp
     // Formata a mensagem para o WhatsApp
     const message = `Olá! Gostaria de agendar um horário no Orizon Prime Studio:%0A%0A` +
       `*Nome:* ${formData.name}%0A` +
       `*Serviço:* ${formData.service}%0A` +
-      `*Data:* ${formData.date}%0A` +
+      `*Data:* ${formData.date.split('-').reverse().join('/')}%0A` +
       `*Horário:* ${formData.time}`
 
     // Número do WhatsApp da barbearia (substitua pelo real)
