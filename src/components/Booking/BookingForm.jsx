@@ -2,8 +2,8 @@ import { useState } from 'react'
 import './BookingForm.css'
 
 export function BookingForm({ isOpen, onClose }) {
-  // (today = variavel === hoje)Pega a data atual no formato YYYY-MM-DD para o atributo min do input de data
-  const today = new Date().toISOString().split('T')[0]
+  // (today = variavel === hoje)Pega a data atual no formato YYYY-MM-DD
+  const today = new Date().toISOString('en-CA').split('T')[0]
 
   const [formData, setFormData] = useState({
     name: '',
@@ -51,6 +51,7 @@ export function BookingForm({ isOpen, onClose }) {
     // Formata a mensagem para o WhatsApp
     const message = `Olá! Gostaria de agendar um horário no Orizon Prime Studio:%0A%0A` +
       `*Nome:* ${formData.name}%0A` +
+      `*Telefone:* ${formData.phone}%0A`+
       `*Serviço:* ${formData.service}%0A` +
       `*Data:* ${formData.date.split('-').reverse().join('/')}%0A` +
       `*Horário:* ${formData.time}`
